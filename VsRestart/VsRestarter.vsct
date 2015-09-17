@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h"/>
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidProToolsPkg">
+    <Groups>
+      <!-- Top Level Group, container of menu -->
+      <Group guid="TopLevelMenuGroup" id="MenuGroup" priority="0xFEFF">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_FILE"/>
+      </Group>
+      
+      <!-- Child Group, used for nesting items -->
+      <Group guid="RestartCommandsGroup" id="RestartGroup" priority="0xFEFF">
+        <Parent guid="TopLevelMenuGroup" id="TopLevelMenu"/>
+      </Group>
+    </Groups>
+
+    <!-- Menus section -->
+    <Menus>
+      <Menu guid="TopLevelMenuGroup" id="TopLevelMenu" priority="0x200" type="Menu">
+        <Parent guid="TopLevelMenuGroup" id="MenuGroup" />
+        <Strings>
+          <ButtonText>Restart</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <!--Buttons section. -->
+    <Buttons>
+      <!-- Restart elevated -->
+      <Button guid="RestartCommandsGroup" id="RestartAsAdmin" priority="0x0100" type="Button">
+        <Parent guid="RestartCommandsGroup" id="RestartGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Restart &amp;Elevated</ButtonText>
+        </Strings>
+      </Button>
+
+      <!-- Restart nested -->
+      <Button guid="RestartCommandsGroup" id="Restart" priority="0x0100" type="Button">
+        <Parent guid="RestartCommandsGroup" id="RestartGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Restart</ButtonText>
+        </Strings>
+      </Button>
+
+      <!-- Restart topMenu  -->
+      <Button guid="TopLevelMenuGroup" id="Restart" priority="0x0100" type="Button">
+        <Parent guid="TopLevelMenuGroup" id="MenuGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <Strings>
+          <ButtonText>Restart</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\restart.png"/>
+    </Bitmaps>
+  </Commands>
+
+  <Symbols>
+    <!-- Package Symbols -->
+    <GuidSymbol name="guidProToolsPkg" value="{7c8887d9-d300-4e91-aadb-862a19a081ff}" />
+
+    <!-- Command Symbols. -->
+    <GuidSymbol name="RestartCommandsGroup" value="{15dc28d5-04f4-4698-90e0-e3e16bc6894f}">
+      <!-- Group -->
+      <IDSymbol name="RestartGroup" value="0x1020" />
+
+      <!-- Buttons -->
+      <IDSymbol name="RestartAsAdmin" value="0x0100" />
+      <IDSymbol name="Restart" value="0x0101" />
+    </GuidSymbol>
+
+    <!-- Top Level Symbols -->
+    <GuidSymbol name="TopLevelMenuGroup" value="{D2FB6644-0147-4FDB-8F35-22B5F0AA8594}">
+      <!-- Group -->
+      <IDSymbol name="MenuGroup" value="0x100"/>
+
+      <!-- Menu -->
+      <IDSymbol name="TopLevelMenu" value="0x201"/>
+
+      <!-- Buttons -->
+      <IDSymbol name="Restart" value="0x0101" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{49379f09-f9d5-4bdf-93e0-156aa2e753de}" >
+      <IDSymbol name="bmpPic1" value="1" />
+    </GuidSymbol>
+  </Symbols>
+
+</CommandTable>
